@@ -276,9 +276,9 @@ std::unique_ptr<Screen> SystemInfo::CreateScreen5() {
                            "the GNU General\n"
                            "Public License v3\n"
                            "#808080 Source code#\n"
-                           "#FFFF00 https://github.com/#\n"
+                           "#28FF00 https://github.com/#\n"
                            "#28FF00 mashuptwice/#\n"
-                           "#FFFF00 InfiniTime#");
+                           "#28FF00 InfiniTime#");
   lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);
   lv_obj_align(label, lv_scr_act(), LV_ALIGN_CENTER, 0, 0);
   return std::make_unique<Screens::Label>(4, 5, app, label);
