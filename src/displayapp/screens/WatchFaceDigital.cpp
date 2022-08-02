@@ -55,19 +55,21 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
   lv_obj_align(label_date, lv_scr_act(), LV_ALIGN_CENTER, 0, 60);
   lv_obj_set_style_local_text_color(label_date, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xffffff));
 
-  label_time = lv_label_create(lv_scr_act(), nullptr);
-  lv_obj_set_style_local_text_font(label_time, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_extrabold_compressed);
-  lv_obj_set_style_local_text_color(label_time, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x24FF00));
+  label_hours = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_font(label_hours, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_extrabold_compressed);
+  lv_obj_set_style_local_text_color(label_hours, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x24FF00));
 
-  label_time_seconds = lv_label_create(lv_scr_act(), nullptr);
-  lv_obj_set_style_local_text_font(label_time_seconds, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_42);
-  lv_obj_set_style_local_text_color(label_time_seconds, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x24FF00));
+  label_minutes = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_font(label_minutes, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_extrabold_compressed);
+  lv_obj_set_style_local_text_color(label_minutes, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x24FF00));
 
-  lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, 0, 0);
+  label_seconds_first = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_font(label_seconds_first, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_bold_20);
+  lv_obj_set_style_local_text_color(label_seconds_first, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x24FF00));
 
-  label_time_ampm = lv_label_create(lv_scr_act(), nullptr);
-  lv_label_set_text_static(label_time_ampm, "");
-  lv_obj_align(label_time_ampm, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, -30, -55);
+  label_seconds_second = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_font(label_seconds_second, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_bold_20);
+  lv_obj_set_style_local_text_color(label_seconds_second, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x24FF00));
 
   heartbeatIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_label_set_text_static(heartbeatIcon, Symbols::heartBeat);
@@ -140,11 +142,22 @@ void WatchFaceDigital::Refresh() {
     uint8_t hour = time.hours().count();
     uint8_t minute = time.minutes().count();
     uint8_t second = time.seconds().count();
+    uint8_t secondFirstDigit = second % 10;
+    uint8_t secondSecondDigit = second / 10;
 
     if (displayedHour != hour || displayedMinute != minute || displayedSecond != second) {
       displayedHour = hour;
       displayedMinute = minute;
       displayedSecond = second;
+      secondFirstDigit = second / 10;
+      secondSecondDigit = second % 10;
+        //very crude way of adding the seconds to the watchface, maybe better create a new font where all elements fit horizontally
+
+        lv_label_set_text_fmt(label_seconds_first, "%2d", secondFirstDigit);
+        lv_obj_align(label_seconds_first, lv_scr_act(), LV_ALIGN_CENTER, -8, -6);
+
+        lv_label_set_text_fmt(label_seconds_second, "%2d", secondSecondDigit);
+        lv_obj_align(label_seconds_second, lv_scr_act(), LV_ALIGN_CENTER, -8, 20);
 
       if (settingsController.GetClockType() == Controllers::Settings::ClockType::H12) {
         char ampmChar[3] = "AM";
@@ -156,18 +169,19 @@ void WatchFaceDigital::Refresh() {
           hour = hour - 12;
           ampmChar[0] = 'P';
         }
-        lv_label_set_text(label_time_ampm, ampmChar);
-        lv_label_set_text_fmt(label_time, "%2d:%02d", hour, minute);
-        lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, 0, 0);
-        //very crude way of adding the seconds, maybe better create a new font where all elements fit horizontally
-        lv_label_set_text_fmt(label_time_seconds, "%02d", second);
-        lv_obj_align(label_time_seconds, lv_scr_act(), LV_ALIGN_IN_BOTTOM_MID, 0, -8);
+
+        //ToDo: fix leading 0 of hours in 12H mode
+        //could be problematic with aligning or maybee needs manual alignment
+        lv_label_set_text_fmt(label_hours, "%02d", hour);
+        lv_obj_align(label_hours, lv_scr_act(), LV_ALIGN_IN_LEFT_MID, 0, 0);
+        lv_label_set_text_fmt(label_minutes, "%02d", minute);
+        lv_obj_align(label_minutes, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, 0, 0);
 
       } else {
-        lv_label_set_text_fmt(label_time, "%02d:%02d", hour, minute);
-        lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_CENTER, 0, 0);
-        lv_label_set_text_fmt(label_time_seconds, "%02d", second);
-        lv_obj_align(label_time_seconds, lv_scr_act(), LV_ALIGN_IN_BOTTOM_MID, 0, -8);
+        lv_label_set_text_fmt(label_hours, "%02d", hour);
+        lv_obj_align(label_hours, lv_scr_act(), LV_ALIGN_IN_LEFT_MID, 0, 0);
+        lv_label_set_text_fmt(label_minutes, "%02d", minute);
+        lv_obj_align(label_minutes, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, 0, 0);
       }
     }
 
