@@ -406,6 +406,7 @@ list(APPEND SOURCE_FILES
         displayapp/Colors.cpp
         displayapp/widgets/Counter.cpp
         displayapp/widgets/PageIndicator.cpp
+        displayapp/widgets/StatusIcons.cpp
 
         ## Settings
         displayapp/screens/settings/QuickSettings.cpp
@@ -611,6 +612,7 @@ set(INCLUDE_FILES
         displayapp/Colors.h
         displayapp/widgets/Counter.h
         displayapp/widgets/PageIndicator.h
+        displayapp/widgets/StatusIcons.h
         drivers/St7789.h
         drivers/SpiNorFlash.h
         drivers/SpiMaster.h
@@ -652,14 +654,14 @@ set(INCLUDE_FILES
         drivers/Cst816s.h
         FreeRTOS/portmacro.h
         FreeRTOS/portmacro_cmsis.h
-        libs/date/includes/date/tz.h
-        libs/date/includes/date/chrono_io.h
-        libs/date/includes/date/date.h
-        libs/date/includes/date/islamic.h
-        libs/date/includes/date/iso_week.h
-        libs/date/includes/date/julian.h
-        libs/date/includes/date/ptz.h
-        libs/date/includes/date/tz_private.h
+        libs/date/include/date/tz.h
+        libs/date/include/date/chrono_io.h
+        libs/date/include/date/date.h
+        libs/date/include/date/islamic.h
+        libs/date/include/date/iso_week.h
+        libs/date/include/date/julian.h
+        libs/date/include/date/ptz.h
+        libs/date/include/date/tz_private.h
         displayapp/LittleVgl.h
         displayapp/lv_pinetime_theme.h
         systemtask/SystemTask.h
@@ -682,7 +684,7 @@ include_directories(
         ../
         libs/
         FreeRTOS/
-        libs/date/includes
+        libs/date/include
         libs/mynewt-nimble/porting/npl/freertos/include
         libs/mynewt-nimble/nimble/include
         libs/mynewt-nimble/porting/nimble/include
