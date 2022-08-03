@@ -379,7 +379,8 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
                                                                brightnessController,
                                                                motorController,
                                                                settingsController,
-                                                               bleController);
+                                                               bleController,
+                                                               touchPanel);
       ReturnApp(Apps::Clock, FullRefreshDirections::LeftAnim, TouchEvents::SwipeLeft);
       break;
     case Apps::Settings:
@@ -443,7 +444,6 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
       break;
     case Apps::FlashLight:
       currentScreen = std::make_unique<Screens::FlashLight>(this, *systemTask, brightnessController);
-      ReturnApp(Apps::QuickSettings, FullRefreshDirections::Down, TouchEvents::SwipeDown);
       break;
     case Apps::StopWatch:
       currentScreen = std::make_unique<Screens::StopWatch>(this, *systemTask);

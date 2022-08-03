@@ -230,7 +230,8 @@ void SystemTask::Work() {
           spi.Wakeup();
 
           // Double Tap needs the touch screen to be in normal mode
-          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap)) {
+          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap) &&
+              settingsController.GetTouchStatus() == Pinetime::Controllers::Settings::Touch::On) {
             touchPanel.Wakeup();
           }
 
@@ -375,7 +376,8 @@ void SystemTask::Work() {
           spi.Sleep();
 
           // Double Tap needs the touch screen to be in normal mode
-          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap)) {
+          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap) ||
+              settingsController.GetTouchStatus() == Pinetime::Controllers::Settings::Touch::Off) {
             touchPanel.Sleep();
           }
 
@@ -516,6 +518,11 @@ void SystemTask::HandleButtonAction(Controllers::ButtonActions action) {
       displayApp.PushMessage(Applications::Display::Messages::ButtonLongPressed);
       break;
     case Actions::LongerPress:
+      if (settingsController.GetTouchStatus() == Pinetime::Controllers::Settings::Touch::Off) {
+        settingsController.SetTouchStatus(Pinetime::Controllers::Settings::Touch::On);
+        touchPanel.Wakeup();
+        break;
+      }
       displayApp.PushMessage(Applications::Display::Messages::ButtonLongerPressed);
       break;
     default:

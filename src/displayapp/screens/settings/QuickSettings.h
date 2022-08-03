@@ -9,6 +9,7 @@
 #include "components/settings/Settings.h"
 #include "components/battery/BatteryController.h"
 #include "displayapp/widgets/StatusIcons.h"
+#include "drivers/Cst816s.h"
 
 namespace Pinetime {
 
@@ -23,7 +24,8 @@ namespace Pinetime {
                       Controllers::BrightnessController& brightness,
                       Controllers::MotorController& motorController,
                       Pinetime::Controllers::Settings& settingsController,
-                      Controllers::Ble& bleController);
+                      Controllers::Ble& bleController,
+                      Drivers::Cst816S& touchPanel);
 
         ~QuickSettings() override;
 
@@ -36,6 +38,7 @@ namespace Pinetime {
         Controllers::BrightnessController& brightness;
         Controllers::MotorController& motorController;
         Controllers::Settings& settingsController;
+        Drivers::Cst816S& touchPanel;
 
         lv_task_t* taskUpdate;
         lv_obj_t* label_time;
