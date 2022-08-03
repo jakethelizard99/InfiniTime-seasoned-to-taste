@@ -12,7 +12,7 @@ namespace {
 Error::Error(Pinetime::Applications::DisplayApp* app, System::BootErrors error) : Screen(app) {
 
   lv_obj_t* warningLabel = lv_label_create(lv_scr_act(), nullptr);
-  lv_obj_set_style_local_text_color(warningLabel, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_ORANGE);
+  lv_obj_set_style_local_text_color(warningLabel, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_RED);
   lv_label_set_text_static(warningLabel, "Warning");
   lv_obj_align(warningLabel, nullptr, LV_ALIGN_IN_TOP_MID, 0, 0);
 
