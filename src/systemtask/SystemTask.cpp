@@ -389,7 +389,8 @@ void SystemTask::Work() {
           break;
         case Messages::OnNewHour:
           using Pinetime::Controllers::AlarmController;
-          if (settingsController.GetChimeOption() == Controllers::Settings::ChimesOption::Hours &&
+          if (settingsController.GetNotificationStatus() != Controllers::Settings::Notification::Sleep &&
+              settingsController.GetChimeOption() == Controllers::Settings::ChimesOption::Hours &&
               alarmController.State() != AlarmController::AlarmState::Alerting) {
             if (state == SystemTaskState::Sleeping) {
               GoToRunning();
@@ -400,7 +401,8 @@ void SystemTask::Work() {
           break;
         case Messages::OnNewHalfHour:
           using Pinetime::Controllers::AlarmController;
-          if (settingsController.GetChimeOption() == Controllers::Settings::ChimesOption::HalfHours &&
+          if (settingsController.GetNotificationStatus() != Controllers::Settings::Notification::Sleep &&
+              settingsController.GetChimeOption() == Controllers::Settings::ChimesOption::HalfHours &&
               alarmController.State() != AlarmController::AlarmState::Alerting) {
             if (state == SystemTaskState::Sleeping) {
               GoToRunning();
