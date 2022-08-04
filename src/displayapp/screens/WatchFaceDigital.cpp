@@ -29,7 +29,7 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
     settingsController {settingsController},
     heartRateController {heartRateController},
     motionController {motionController},
-    statusIcons(batteryController, bleController) {
+    statusIcons(batteryController, bleController, settingsController) {
 
   statusIcons.Create();
 

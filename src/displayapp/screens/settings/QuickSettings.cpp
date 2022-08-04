@@ -31,7 +31,7 @@ QuickSettings::QuickSettings(Pinetime::Applications::DisplayApp* app,
     brightness {brightness},
     motorController {motorController},
     settingsController {settingsController},
-    statusIcons(batteryController, bleController),
+    statusIcons(batteryController, bleController, settingsController),
     touchPanel {touchPanel} {
 
   statusIcons.Create();
@@ -76,9 +76,9 @@ QuickSettings::QuickSettings(Pinetime::Applications::DisplayApp* app,
   lv_obj_t* lbl_btn;
   lbl_btn = lv_label_create(btn2, nullptr);
   lv_obj_set_style_local_text_font(lbl_btn, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &lv_font_sys_48);
-  lv_label_set_text_static(lbl_btn, Symbols::touch);
+  lv_label_set_text_static(lbl_btn, Symbols::drop);
 
-  if (settingsController.GetTouchStatus() == Controllers::Settings::Touch::On) {
+  if (settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
     lv_obj_add_state(btn2, LV_STATE_CHECKED);
   }
 
@@ -132,14 +132,14 @@ void QuickSettings::OnButtonEvent(lv_obj_t* object, lv_event_t event) {
   if (object == btn2 && event == LV_EVENT_VALUE_CHANGED) {
 
     if (lv_obj_get_state(btn2, LV_BTN_PART_MAIN) & LV_STATE_CHECKED) {
-      settingsController.SetTouchStatus(Controllers::Settings::Touch::On);
-      motorController.RunForDuration(35);
-      touchPanel.Wakeup();
-    } else {
-      settingsController.SetTouchStatus(Controllers::Settings::Touch::Off);
+      settingsController.SetWaterLockStatus(Controllers::Settings::WaterLock::On);
       motorController.RunForDuration(35);
       touchPanel.Sleep();
       app->StartApp(Apps::Clock, DisplayApp::FullRefreshDirections::LeftAnim);
+    } else {
+      settingsController.SetWaterLockStatus(Controllers::Settings::WaterLock::Off);
+      motorController.RunForDuration(35);
+      touchPanel.Wakeup();
     }
 
   } else if (object == btn1 && event == LV_EVENT_CLICKED) {

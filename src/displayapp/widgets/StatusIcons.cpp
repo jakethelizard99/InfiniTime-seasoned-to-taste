@@ -3,8 +3,10 @@
 
 using namespace Pinetime::Applications::Widgets;
 
-StatusIcons::StatusIcons(Controllers::Battery& batteryController, Controllers::Ble& bleController)
-  : batteryController {batteryController}, bleController {bleController} {
+StatusIcons::StatusIcons(Controllers::Battery& batteryController,
+                         Controllers::Ble& bleController,
+                         Controllers::Settings& settingsController)
+  : batteryController {batteryController}, bleController {bleController}, settingsController {settingsController} {
 }
 
 void StatusIcons::Create() {
@@ -13,6 +15,10 @@ void StatusIcons::Create() {
   lv_cont_set_fit(container, LV_FIT_TIGHT);
   lv_obj_set_style_local_pad_inner(container, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 5);
   lv_obj_set_style_local_bg_opa(container, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
+
+  waterLockIcon = lv_label_create(container, nullptr);
+  lv_obj_set_style_local_text_color(waterLockIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_CYAN);
+  lv_label_set_text_static(waterLockIcon, Screens::Symbols::drop);
 
   bleIcon = lv_label_create(container, nullptr);
   lv_obj_set_style_local_text_color(bleIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x0082FC));
@@ -28,6 +34,8 @@ void StatusIcons::Create() {
 }
 
 void StatusIcons::Update() {
+  lv_obj_set_hidden(waterLockIcon, settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::Off);
+
   powerPresent = batteryController.IsPowerPresent();
   if (powerPresent.IsUpdated()) {
     lv_obj_set_hidden(batteryPlug, !powerPresent.Get());

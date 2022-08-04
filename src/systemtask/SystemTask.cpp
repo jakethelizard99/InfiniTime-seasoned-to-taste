@@ -231,7 +231,7 @@ void SystemTask::Work() {
 
           // Double Tap needs the touch screen to be in normal mode
           if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap) &&
-              settingsController.GetTouchStatus() == Pinetime::Controllers::Settings::Touch::On) {
+              settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::Off) {
             touchPanel.Wakeup();
           }
 
@@ -377,7 +377,7 @@ void SystemTask::Work() {
 
           // Double Tap needs the touch screen to be in normal mode
           if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap) ||
-              settingsController.GetTouchStatus() == Pinetime::Controllers::Settings::Touch::Off) {
+              settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
             touchPanel.Sleep();
           }
 
@@ -518,8 +518,8 @@ void SystemTask::HandleButtonAction(Controllers::ButtonActions action) {
       displayApp.PushMessage(Applications::Display::Messages::ButtonLongPressed);
       break;
     case Actions::LongerPress:
-      if (settingsController.GetTouchStatus() == Pinetime::Controllers::Settings::Touch::Off) {
-        settingsController.SetTouchStatus(Pinetime::Controllers::Settings::Touch::On);
+      if (settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
+        settingsController.SetWaterLockStatus(Controllers::Settings::WaterLock::Off);
         touchPanel.Wakeup();
         break;
       }

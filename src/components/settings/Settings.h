@@ -10,7 +10,7 @@ namespace Pinetime {
     public:
       enum class ClockType : uint8_t { H24, H12 };
       enum class Notification : uint8_t { ON, OFF };
-      enum class Touch : uint8_t { On, Off };
+      enum class WaterLock : uint8_t { On, Off };
       enum class ChimesOption : uint8_t { None, Hours, HalfHours };
       enum class WakeUpMode : uint8_t {
         SingleTap = 0,
@@ -130,14 +130,14 @@ namespace Pinetime {
         return settings.notificationStatus;
       };
 
-      void SetTouchStatus(Touch status) {
-        if (status != settings.touchStatus) {
+      void SetWaterLockStatus(WaterLock status) {
+        if (status != settings.waterLockStatus) {
           settingsChanged = true;
         }
-        settings.touchStatus = status;
+        settings.waterLockStatus = status;
       }
-      Touch GetTouchStatus() const {
-        return settings.touchStatus;
+      WaterLock GetWaterLockStatus() const {
+        return settings.waterLockStatus;
       }
 
       void SetScreenTimeOut(uint32_t timeout) {
@@ -223,7 +223,7 @@ namespace Pinetime {
     private:
       Pinetime::Controllers::FS& fs;
 
-      static constexpr uint32_t settingsVersion = 0x0003;
+      static constexpr uint32_t settingsVersion = 0x0004;
       struct SettingsData {
         uint32_t version = settingsVersion;
         uint32_t stepsGoal = 10000;
@@ -231,7 +231,7 @@ namespace Pinetime {
 
         ClockType clockType = ClockType::H24;
         Notification notificationStatus = Notification::ON;
-        Touch touchStatus = Touch::On;
+        WaterLock waterLockStatus = WaterLock::Off;
 
         uint8_t clockFace = 0;
         ChimesOption chimesOption = ChimesOption::None;
