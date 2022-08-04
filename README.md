@@ -23,6 +23,13 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 - experimental/unstable!
 
 
+### Planned Features ###
+
+- battery % on digital watchface
+- quicksettings-alike music controls
+- X/Y HRM graph
+- always-on mode
+- fork it and I pull it
 
 -----
 
