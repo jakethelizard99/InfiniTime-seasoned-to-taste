@@ -376,8 +376,8 @@ void SystemTask::Work() {
           spi.Sleep();
 
           // Double Tap needs the touch screen to be in normal mode
-          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap) ||
-              settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
+          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap) &&
+              settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::Off) {
             touchPanel.Sleep();
           }
 
