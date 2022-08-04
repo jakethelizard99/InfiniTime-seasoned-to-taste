@@ -27,6 +27,7 @@
 #include "displayapp/screens/FlashLight.h"
 #include "displayapp/screens/BatteryInfo.h"
 #include "displayapp/screens/Steps.h"
+#include "displayapp/screens/WaterLockConfirmation.h"
 #include "displayapp/screens/PassKey.h"
 #include "displayapp/screens/Error.h"
 
@@ -379,8 +380,7 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
                                                                brightnessController,
                                                                motorController,
                                                                settingsController,
-                                                               bleController,
-                                                               touchPanel);
+                                                               bleController);
       ReturnApp(Apps::Clock, FullRefreshDirections::LeftAnim, TouchEvents::SwipeLeft);
       break;
     case Apps::Settings:
@@ -475,6 +475,10 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
       break;
     case Apps::Steps:
       currentScreen = std::make_unique<Screens::Steps>(this, motionController, settingsController);
+      break;
+    case Apps::WaterLockConfirmation:
+      currentScreen = std::make_unique<Screens::WaterLockConfirmation>(this, settingsController, touchPanel);
+      ReturnApp(Apps::QuickSettings, FullRefreshDirections::Down, TouchEvents::SwipeDown);
       break;
   }
   currentApp = app;
