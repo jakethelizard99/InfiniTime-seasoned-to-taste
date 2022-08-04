@@ -8,7 +8,7 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 
 -----
 
-### This Fork comes with various design modifications. ###
+### This Fork comes with various design and functional modifications  ###
 
 
 ![Screenshot_20220803_160739](https://user-images.githubusercontent.com/54219098/182631004-f2532ce0-68c3-4eb0-bfd5-129c6e38bb2d.png)
@@ -16,6 +16,13 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 ![Screenshot_20220803_160819](https://user-images.githubusercontent.com/54219098/182631252-78a7a2e8-2e81-4b8a-8023-9e99a3bd1534.png)
 
 ![Screenshot_20220803_160804](https://user-images.githubusercontent.com/54219098/182631362-7685901b-c475-4920-9a2e-4ba873bfdcf8.png)
+
+- Longer alarm timeout (3m) than default (60s)
+- green text and elements, consistent with bootloader
+- lets find out together what else is possible!
+- experimental/unstable!
+
+
 
 -----
 
