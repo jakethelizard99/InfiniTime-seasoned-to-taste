@@ -249,6 +249,9 @@ void SystemTask::Work() {
           isDimmed = false;
           break;
         case Messages::TouchWakeUp: {
+          if (settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
+            break;
+          }
           if (touchHandler.GetNewTouchInfo()) {
             auto gesture = touchHandler.GestureGet();
             if (settingsController.GetNotificationStatus() != Controllers::Settings::Notification::Sleep &&
@@ -341,6 +344,9 @@ void SystemTask::Work() {
           // TODO add intent of fs access icon or something
           break;
         case Messages::OnTouchEvent:
+          if (settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
+            break;
+          }
           if (touchHandler.GetNewTouchInfo()) {
             touchHandler.UpdateLvglTouchPoint();
           }
@@ -518,6 +524,10 @@ void SystemTask::HandleButtonAction(Controllers::ButtonActions action) {
       displayApp.PushMessage(Applications::Display::Messages::ButtonLongPressed);
       break;
     case Actions::LongerPress:
+      if (settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
+        settingsController.SetWaterLockStatus(Controllers::Settings::WaterLock::Off);
+        break;
+      }
       displayApp.PushMessage(Applications::Display::Messages::ButtonLongerPressed);
       break;
     default:
