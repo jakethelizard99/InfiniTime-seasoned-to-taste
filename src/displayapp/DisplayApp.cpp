@@ -477,7 +477,7 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
       currentScreen = std::make_unique<Screens::Steps>(this, motionController, settingsController);
       break;
     case Apps::WaterLockConfirmation:
-      currentScreen = std::make_unique<Screens::WaterLockConfirmation>(this, settingsController, touchPanel);
+      currentScreen = std::make_unique<Screens::WaterLockConfirmation>(this, settingsController);
       ReturnApp(Apps::QuickSettings, FullRefreshDirections::Down, TouchEvents::SwipeDown);
       break;
   }

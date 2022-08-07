@@ -230,8 +230,7 @@ void SystemTask::Work() {
           spi.Wakeup();
 
           // Double Tap needs the touch screen to be in normal mode
-          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap) &&
-              settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::Off) {
+          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap)) {
             touchPanel.Wakeup();
           }
 
@@ -250,6 +249,9 @@ void SystemTask::Work() {
           isDimmed = false;
           break;
         case Messages::TouchWakeUp: {
+          if (settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
+            break;
+          }
           if (touchHandler.GetNewTouchInfo()) {
             auto gesture = touchHandler.GestureGet();
             if (gesture != Pinetime::Applications::TouchEvents::None &&
@@ -341,6 +343,9 @@ void SystemTask::Work() {
           // TODO add intent of fs access icon or something
           break;
         case Messages::OnTouchEvent:
+          if (settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
+            break;
+          }
           if (touchHandler.GetNewTouchInfo()) {
             touchHandler.UpdateLvglTouchPoint();
           }
@@ -376,8 +381,7 @@ void SystemTask::Work() {
           spi.Sleep();
 
           // Double Tap needs the touch screen to be in normal mode
-          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap) &&
-              settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::Off) {
+          if (!settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap)) {
             touchPanel.Sleep();
           }
 
@@ -520,7 +524,6 @@ void SystemTask::HandleButtonAction(Controllers::ButtonActions action) {
     case Actions::LongerPress:
       if (settingsController.GetWaterLockStatus() == Controllers::Settings::WaterLock::On) {
         settingsController.SetWaterLockStatus(Controllers::Settings::WaterLock::Off);
-        touchPanel.Wakeup();
         break;
       }
       displayApp.PushMessage(Applications::Display::Messages::ButtonLongerPressed);

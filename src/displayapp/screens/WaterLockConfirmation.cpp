@@ -10,13 +10,11 @@ namespace {
   }
 }
 
-WaterLockConfirmation::WaterLockConfirmation(Pinetime::Applications::DisplayApp* app,
-                                             Controllers::Settings& settingsController,
-                                             Drivers::Cst816S& touchPanel)
-  : Screen(app), settingsController {settingsController}, touchPanel {touchPanel} {
+WaterLockConfirmation::WaterLockConfirmation(Pinetime::Applications::DisplayApp* app, Controllers::Settings& settingsController)
+  : Screen(app), settingsController {settingsController} {
   label = lv_label_create(lv_scr_act(), nullptr);
   lv_label_set_recolor(label, true);
-  lv_label_set_text_static(label, "\n#FFFF00 Enable water lock?#\n\n#808080 Press and hold#\n#808080 button to disable.#");
+  lv_label_set_text_static(label, "\n#FFFF00 Enable water lock?#\n\n\n#808080 Press and hold#\n#808080 button to disable.#");
   lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);
   lv_obj_align(label, lv_scr_act(), LV_ALIGN_IN_TOP_MID, 0, 0);
 
@@ -40,7 +38,6 @@ void WaterLockConfirmation::OnButtonEvent(lv_obj_t* obj, lv_event_t event) {
 
   if (obj == btnEnable) {
     settingsController.SetWaterLockStatus(Controllers::Settings::WaterLock::On);
-    touchPanel.Sleep();
     app->StartApp(Apps::Clock, DisplayApp::FullRefreshDirections::LeftAnim);
   }
 }

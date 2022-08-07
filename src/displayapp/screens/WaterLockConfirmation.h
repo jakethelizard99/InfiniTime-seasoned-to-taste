@@ -10,7 +10,7 @@ namespace Pinetime {
     namespace Screens {
       class WaterLockConfirmation : public Screen {
       public:
-        WaterLockConfirmation(DisplayApp* app, Controllers::Settings& settingsController, Drivers::Cst816S& touchPanel);
+        WaterLockConfirmation(DisplayApp* app, Controllers::Settings& settingsController);
         ~WaterLockConfirmation() override;
 
         void OnButtonEvent(lv_obj_t* obj, lv_event_t event);
@@ -21,7 +21,6 @@ namespace Pinetime {
         lv_obj_t* txtEnable;
 
         Controllers::Settings& settingsController;
-        Drivers::Cst816S& touchPanel;
       };
     }
   }
