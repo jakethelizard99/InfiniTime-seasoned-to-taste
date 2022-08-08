@@ -268,14 +268,6 @@ bool Music::OnTouchEvent(Pinetime::Applications::TouchEvents event) {
       }
       return false;
     }
-    case TouchEvents::SwipeLeft: {
-      musicService.event(Controllers::MusicService::EVENT_MUSIC_NEXT);
-      return true;
-    }
-    case TouchEvents::SwipeRight: {
-      musicService.event(Controllers::MusicService::EVENT_MUSIC_PREV);
-      return true;
-    }
     default: {
       return false;
     }
