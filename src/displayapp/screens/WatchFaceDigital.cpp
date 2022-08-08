@@ -25,7 +25,6 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
   : Screen(app),
     currentDateTime {{}},
     dateTimeController {dateTimeController},
-    batteryController {batteryController},
     notificatioManager {notificatioManager},
     settingsController {settingsController},
     heartRateController {heartRateController},
@@ -33,12 +32,6 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
     statusIcons(batteryController, bleController) {
 
   statusIcons.Create();
-
-  batteryValue = lv_label_create(lv_scr_act(), nullptr);
-  lv_label_set_recolor(batteryValue, true);
-  lv_obj_set_style_local_text_color(batteryValue, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x24FF00));
-  lv_obj_align(batteryValue, lv_scr_act(), LV_ALIGN_IN_TOP_MID, 0, 0);
-
 
   notificationIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(notificationIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x00FF00));
@@ -209,10 +202,4 @@ void WatchFaceDigital::Refresh() {
     lv_obj_realign(stepValue);
     lv_obj_realign(stepIcon);
   }
-
-  batteryPercentRemaining = batteryController.PercentRemaining();
-  if (batteryPercentRemaining.IsUpdated()) {
-    lv_label_set_text_fmt(batteryValue, "%d%%", batteryPercentRemaining.Get());
-  }
-
 }

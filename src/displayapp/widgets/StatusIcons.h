@@ -22,8 +22,9 @@ namespace Pinetime {
 
       private:
         Screens::BatteryIcon batteryIcon;
-        Pinetime::Controllers::Battery& batteryController;
         Controllers::Ble& bleController;
+        Controllers::Battery& batteryController;
+
 
         Screens::DirtyValue<uint8_t> batteryPercentRemaining {};
         Screens::DirtyValue<bool> powerPresent {};
@@ -33,6 +34,8 @@ namespace Pinetime {
         lv_obj_t* bleIcon;
         lv_obj_t* batteryPlug;
         lv_obj_t* container;
+        lv_obj_t* batteryValue;
+
       };
     }
   }
