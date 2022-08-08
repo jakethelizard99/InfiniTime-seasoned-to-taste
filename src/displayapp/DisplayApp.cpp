@@ -207,6 +207,22 @@ void DisplayApp::Refresh() {
         if (gesture == TouchEvents::None) {
           break;
         }
+        /*
+        //needs much more work, currently non-functional
+        if (currentApp == Apps::Music) {
+          switch (gesture) {
+            case TouchEvents::SwipeDown:
+              LoadApp(Apps::Launcher, DisplayApp::FullRefreshDirections::Up);
+              break;
+            case TouchEvents::SwipeLeft:
+              LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::RightAnim);
+              break;
+            default:
+              break;
+
+          }
+        }
+        */
         if (!currentScreen->OnTouchEvent(gesture)) {
           if (currentApp == Apps::Clock) {
             switch (gesture) {
@@ -218,6 +234,9 @@ void DisplayApp::Refresh() {
                 break;
               case TouchEvents::SwipeRight:
                 LoadApp(Apps::QuickSettings, DisplayApp::FullRefreshDirections::RightAnim);
+                break;
+              case TouchEvents::SwipeLeft:
+                LoadApp(Apps::Music, DisplayApp::FullRefreshDirections::LeftAnim);
                 break;
               case TouchEvents::DoubleTap:
                 PushMessageToSystemTask(System::Messages::GoToSleep);
@@ -459,6 +478,7 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
       break;
     case Apps::Music:
       currentScreen = std::make_unique<Screens::Music>(this, systemTask->nimble().music());
+      ReturnApp(Apps::Clock, FullRefreshDirections::RightAnim, TouchEvents::SwipeDown);
       break;
     case Apps::Navigation:
       currentScreen = std::make_unique<Screens::Navigation>(this, systemTask->nimble().navigation());
