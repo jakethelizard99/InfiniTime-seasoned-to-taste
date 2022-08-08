@@ -251,8 +251,7 @@ void SystemTask::Work() {
         case Messages::TouchWakeUp: {
           if (touchHandler.GetNewTouchInfo()) {
             auto gesture = touchHandler.GestureGet();
-            if (settingsController.GetNotificationStatus() != Controllers::Settings::Notification::Sleep &&
-                gesture != Pinetime::Applications::TouchEvents::None &&
+            if (gesture != Pinetime::Applications::TouchEvents::None &&
                 ((gesture == Pinetime::Applications::TouchEvents::DoubleTap &&
                   settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::DoubleTap)) ||
                  (gesture == Pinetime::Applications::TouchEvents::Tap &&
@@ -281,7 +280,7 @@ void SystemTask::Work() {
           }
           break;
         case Messages::OnNewNotification:
-          if (settingsController.GetNotificationStatus() == Pinetime::Controllers::Settings::Notification::On) {
+          if (settingsController.GetNotificationStatus() == Pinetime::Controllers::Settings::Notification::ON) {
             if (state == SystemTaskState::Sleeping) {
               GoToRunning();
             } else {
@@ -389,8 +388,7 @@ void SystemTask::Work() {
           break;
         case Messages::OnNewHour:
           using Pinetime::Controllers::AlarmController;
-          if (settingsController.GetNotificationStatus() != Controllers::Settings::Notification::Sleep &&
-              settingsController.GetChimeOption() == Controllers::Settings::ChimesOption::Hours &&
+          if (settingsController.GetChimeOption() == Controllers::Settings::ChimesOption::Hours &&
               alarmController.State() != AlarmController::AlarmState::Alerting) {
             if (state == SystemTaskState::Sleeping) {
               GoToRunning();
@@ -401,8 +399,7 @@ void SystemTask::Work() {
           break;
         case Messages::OnNewHalfHour:
           using Pinetime::Controllers::AlarmController;
-          if (settingsController.GetNotificationStatus() != Controllers::Settings::Notification::Sleep &&
-              settingsController.GetChimeOption() == Controllers::Settings::ChimesOption::HalfHours &&
+          if (settingsController.GetChimeOption() == Controllers::Settings::ChimesOption::HalfHours &&
               alarmController.State() != AlarmController::AlarmState::Alerting) {
             if (state == SystemTaskState::Sleeping) {
               GoToRunning();
@@ -486,11 +483,12 @@ void SystemTask::UpdateMotion() {
   motionController.IsSensorOk(motionSensor.IsOk());
   motionController.Update(motionValues.x, motionValues.y, motionValues.z, motionValues.steps);
 
-  if (settingsController.GetNotificationStatus() != Controllers::Settings::Notification::Sleep &&
-      ((settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::RaiseWrist) &&
-        motionController.Should_RaiseWake(state == SystemTaskState::Sleeping)) ||
-       (settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::Shake) &&
-        motionController.Should_ShakeWake(settingsController.GetShakeThreshold())))) {
+  if (settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::RaiseWrist) &&
+      motionController.Should_RaiseWake(state == SystemTaskState::Sleeping)) {
+    GoToRunning();
+  }
+  if (settingsController.isWakeUpModeOn(Pinetime::Controllers::Settings::WakeUpMode::Shake) &&
+      motionController.Should_ShakeWake(settingsController.GetShakeThreshold())) {
     GoToRunning();
   }
 }
