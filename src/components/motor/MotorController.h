@@ -12,7 +12,7 @@ namespace Pinetime {
       MotorController() = default;
 
       void Init();
-      void RunForDuration(uint8_t motorDuration);
+      void RunForDuration(unsigned short int motorDuration);
       void StartRinging();
       void StopRinging();
 
