@@ -294,6 +294,7 @@ Notifications::NotificationItem::NotificationItem(const char* title,
   lv_obj_set_width(alert_subject, LV_HOR_RES - 20);
 
   switch (category) {
+    default:
       lv_label_set_text(alert_subject, msg);
       break;
     case Controllers::NotificationManager::Categories::IncomingCall: {
