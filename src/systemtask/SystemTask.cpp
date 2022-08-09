@@ -294,7 +294,7 @@ void SystemTask::Work() {
           if (state == SystemTaskState::Sleeping) {
             GoToRunning();
           }
-          motorController.RunForDuration(2000);
+          motorController.RunForDuration(1000);
           displayApp.PushMessage(Pinetime::Applications::Display::Messages::TimerDone);
           break;
         case Messages::SetOffAlarm:
