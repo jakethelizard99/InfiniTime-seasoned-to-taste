@@ -76,7 +76,6 @@ namespace Pinetime {
         TickType_t lastIncrement = 0;
 
         bool playing;
-        bool buttonsHidden;
 
         lv_task_t* taskRefresh;
 
