@@ -15,8 +15,10 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 - longer timer vibration (1000ms) than default (35ms)
 - green text and elements, consistent with bootloader
 - seconds shown on digital watchface
-- battery % on digital watchface
+- battery % visible in statusbar
 - music app accessible by swipe-left on watchface
+- music app opens with volume controls by default
+- quick-settings can now be closed via swipe-down
 
 The builds always include the most recent changes in upstream/develop.
 
