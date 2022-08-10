@@ -250,23 +250,20 @@ void Music::OnObjectEvent(lv_obj_t* obj, lv_event_t event) {
 
 bool Music::OnTouchEvent(Pinetime::Applications::TouchEvents event) {
   switch (event) {
-    case TouchEvents::SwipeUp: {
-      lv_obj_set_hidden(btnVolDown, false);
-      lv_obj_set_hidden(btnVolUp, false);
-
-      lv_obj_set_hidden(btnNext, true);
-      lv_obj_set_hidden(btnPrev, true);
-      return true;
-    }
-    case TouchEvents::SwipeDown: {
+    case TouchEvents::LongTap: {
       if (lv_obj_get_hidden(btnNext)) {
         lv_obj_set_hidden(btnNext, false);
         lv_obj_set_hidden(btnPrev, false);
         lv_obj_set_hidden(btnVolDown, true);
         lv_obj_set_hidden(btnVolUp, true);
         return true;
+      } else {
+        lv_obj_set_hidden(btnVolDown, false);
+        lv_obj_set_hidden(btnVolUp, false);
+        lv_obj_set_hidden(btnNext, true);
+        lv_obj_set_hidden(btnPrev, true);
+        return true;
       }
-      return false;
     }
     default: {
       return false;

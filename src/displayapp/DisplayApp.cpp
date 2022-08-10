@@ -244,6 +244,29 @@ void DisplayApp::Refresh() {
               default:
                 break;
             }
+          } else if (currentApp == Apps::Music) {
+            switch (gesture) {
+              default:
+                break;
+              case TouchEvents::SwipeRight:
+                LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::RightAnim);
+                break;
+              case TouchEvents::SwipeDown:
+                LoadApp(Apps::Launcher, DisplayApp::FullRefreshDirections::Down);
+                break;
+            }
+          } else if (currentApp == Apps::QuickSettings) {
+            switch (gesture) {
+              default:
+                break;
+              case TouchEvents::SwipeLeft:
+                LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::RightAnim);
+                break;
+              case TouchEvents::SwipeDown:
+                LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::RightAnim);
+                break;
+            }
+
           } else if (returnTouchEvent == gesture) {
             LoadPreviousScreen();
           }
@@ -478,7 +501,6 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
       break;
     case Apps::Music:
       currentScreen = std::make_unique<Screens::Music>(this, systemTask->nimble().music());
-      ReturnApp(Apps::Clock, FullRefreshDirections::RightAnim, TouchEvents::SwipeDown);
       break;
     case Apps::Navigation:
       currentScreen = std::make_unique<Screens::Navigation>(this, systemTask->nimble().navigation());
