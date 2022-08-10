@@ -63,7 +63,6 @@ Music::Music(Pinetime::Applications::DisplayApp* app, Pinetime::Controllers::Mus
   lv_obj_add_style(btnVolDown, LV_STATE_DEFAULT, &btn_style);
   label = lv_label_create(btnVolDown, nullptr);
   lv_label_set_text_static(label, Symbols::volumDown);
-  lv_obj_set_hidden(btnVolDown, true);
 
   btnVolUp = lv_btn_create(lv_scr_act(), nullptr);
   btnVolUp->user_data = this;
@@ -73,7 +72,6 @@ Music::Music(Pinetime::Applications::DisplayApp* app, Pinetime::Controllers::Mus
   lv_obj_add_style(btnVolUp, LV_STATE_DEFAULT, &btn_style);
   label = lv_label_create(btnVolUp, nullptr);
   lv_label_set_text_static(label, Symbols::volumUp);
-  lv_obj_set_hidden(btnVolUp, true);
 
   btnPrev = lv_btn_create(lv_scr_act(), nullptr);
   btnPrev->user_data = this;
@@ -83,6 +81,7 @@ Music::Music(Pinetime::Applications::DisplayApp* app, Pinetime::Controllers::Mus
   lv_obj_add_style(btnPrev, LV_STATE_DEFAULT, &btn_style);
   label = lv_label_create(btnPrev, nullptr);
   lv_label_set_text_static(label, Symbols::stepBackward);
+  lv_obj_set_hidden(btnPrev, true);
 
   btnNext = lv_btn_create(lv_scr_act(), nullptr);
   btnNext->user_data = this;
@@ -92,6 +91,7 @@ Music::Music(Pinetime::Applications::DisplayApp* app, Pinetime::Controllers::Mus
   lv_obj_add_style(btnNext, LV_STATE_DEFAULT, &btn_style);
   label = lv_label_create(btnNext, nullptr);
   lv_label_set_text_static(label, Symbols::stepForward);
+  lv_obj_set_hidden(btnNext, true);
 
   btnPlayPause = lv_btn_create(lv_scr_act(), nullptr);
   btnPlayPause->user_data = this;
