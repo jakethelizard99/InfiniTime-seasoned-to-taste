@@ -260,10 +260,10 @@ void DisplayApp::Refresh() {
               default:
                 break;
               case TouchEvents::SwipeLeft:
-                LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::RightAnim);
+                LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::LeftAnim);
                 break;
               case TouchEvents::SwipeDown:
-                LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::RightAnim);
+                LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::LeftAnim);
                 break;
             }
 
