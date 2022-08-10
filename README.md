@@ -19,6 +19,7 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 - music app accessible by swipe-left on watchface
 - music app opens with volume controls by default
 - quick-settings can now be closed via swipe-down
+- flashlight on when starting app
 
 The builds always include the most recent changes in upstream/develop.
 
