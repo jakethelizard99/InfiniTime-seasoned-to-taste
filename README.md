@@ -12,9 +12,13 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 
 
 - Longer alarm timeout (3m) than default (60s)
+- longer timer vibration (1000ms) than default (35ms)
 - green text and elements, consistent with bootloader
 - seconds shown on digital watchface
 - battery % on digital watchface
+- music app accessible by swipe-left on watchface
+
+The builds always include the most recent changes in upstream/develop.
 
 **experimental/unstable!**
 
@@ -36,7 +40,6 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 
 ### Planned Features ###
 
-- quicksettings-alike music controls
 - X/Y HRM graph
 - always-on mode
 
