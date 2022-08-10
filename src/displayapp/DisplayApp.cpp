@@ -207,22 +207,7 @@ void DisplayApp::Refresh() {
         if (gesture == TouchEvents::None) {
           break;
         }
-        /*
-        //needs much more work, currently non-functional
-        if (currentApp == Apps::Music) {
-          switch (gesture) {
-            case TouchEvents::SwipeDown:
-              LoadApp(Apps::Launcher, DisplayApp::FullRefreshDirections::Up);
-              break;
-            case TouchEvents::SwipeLeft:
-              LoadApp(Apps::Clock, DisplayApp::FullRefreshDirections::RightAnim);
-              break;
-            default:
-              break;
-
-          }
-        }
-        */
+       
         if (!currentScreen->OnTouchEvent(gesture)) {
           if (currentApp == Apps::Clock) {
             switch (gesture) {
