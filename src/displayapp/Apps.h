@@ -17,7 +17,6 @@ namespace Pinetime {
       BatteryInfo,
       Music,
       Paint,
-      Paddle,
       Twos,
       HeartRate,
       StopWatch,
