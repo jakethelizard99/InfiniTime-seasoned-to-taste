@@ -20,7 +20,6 @@ namespace Pinetime {
       Paddle,
       Twos,
       HeartRate,
-      Navigation,
       StopWatch,
       Metronome,
       Motion,
