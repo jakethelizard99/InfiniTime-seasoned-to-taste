@@ -46,7 +46,6 @@ namespace Pinetime {
           {Symbols::heartBeat, Apps::HeartRate},
           {Symbols::music, Apps::Music},
           {Symbols::paintbrush, Apps::Paint},
-          {"2", Apps::Twos},
           {Symbols::chartLine, Apps::Motion},
           {Symbols::drum, Apps::Metronome},
         }};
