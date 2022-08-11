@@ -36,6 +36,9 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 - battery symbol follows same color scheme than percentage
 - darker notification background
 
+- removed **games apps** (paddle, twos)
+- removed **navigation app** (currently non-functional on android)
+
 The builds always include the most recent changes in upstream/develop.
 
 **experimental/unstable!**
