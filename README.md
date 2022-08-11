@@ -44,7 +44,8 @@ The builds always include the most recent changes in upstream/develop.
 ### Planned Features ###
 
 - X/Y HRM graph
-- always-on mode
+- dismiss/delete new notification by swiping
+
 
 Lets find out together what else is possible, happy to accept pull requests with new ideas
 
