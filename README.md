@@ -4,6 +4,7 @@
 
 ![InfiniTime logo](images/infinitime-logo-small.jpg "InfiniTime Logo")
 
+
 Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/pinetime/) with many features, written in modern C++.
 
 -----
@@ -11,34 +12,33 @@ Fast open-source firmware for the [PineTime smartwatch](https://www.pine64.org/p
 ### This Fork comes with various design and functional modifications  ###
 
 
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/54219098/184215790-faa65165-49b2-4cf9-bbf2-74258f948ea9.png" width="250" />
+	<img src="https://user-images.githubusercontent.com/54219098/184216721-d985b088-556a-4fa6-b83b-39a8d39971fb.png" width="250" />
+	<img src="https://user-images.githubusercontent.com/54219098/182631252-78a7a2e8-2e81-4b8a-8023-9e99a3bd1534.png" width="250" />
+	<img src="https://user-images.githubusercontent.com/54219098/182631362-7685901b-c475-4920-9a2e-4ba873bfdcf8.png" width="250" />
+ <img src="https://user-images.githubusercontent.com/54219098/184218780-0264b8b1-f674-49f9-b3e9-378813fecc26.png" width="250" />
+</p>
+
+
 - Longer alarm timeout (3m) than default (60s) (#945 #1233)
 - longer timer vibration (1000ms) than default (35ms) (#391)
+- music app accessible by swipe-left on watchface
+- music app opens with volume controls by default
+- music app toggle volume/track buttons via long-tap instead of swipe-up-down 
+- quick-settings can now be closed via swipe-down (#1249)
+- flashlight on when starting app
+
 - green text and elements, consistent with bootloader
 - seconds shown on digital watchface
 - battery % visible in statusbar
-- music app accessible by swipe-left on watchface
-- music app opens with volume controls by default
-- quick-settings can now be closed via swipe-down (#1249)
-- flashlight on when starting app
+- charging plug symbol is now green
+- battery symbol follows same color scheme than percentage
+- darker notification background
 
 The builds always include the most recent changes in upstream/develop.
 
 **experimental/unstable!**
-
-
-
-![Screenshot_20220808_232102](https://user-images.githubusercontent.com/54219098/183518364-e83cca74-fcab-481e-bcdb-4701837fcada.png)
-
-![Screenshot_20220808_232111](https://user-images.githubusercontent.com/54219098/183518390-0cd01ba5-3aac-42fd-8b97-7299a1c82113.png)
-
-![Screenshot_20220808_232121](https://user-images.githubusercontent.com/54219098/183518423-ffd3c86b-814d-48a2-b62f-24d05fdecdc7.png)
-
-
-![Screenshot_20220803_160819](https://user-images.githubusercontent.com/54219098/182631252-78a7a2e8-2e81-4b8a-8023-9e99a3bd1534.png)
-
-![Screenshot_20220803_160804](https://user-images.githubusercontent.com/54219098/182631362-7685901b-c475-4920-9a2e-4ba873bfdcf8.png)
-
-
 
 
 ### Planned Features ###
