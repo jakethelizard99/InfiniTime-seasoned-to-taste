@@ -19,7 +19,6 @@
 #include "displayapp/screens/StopWatch.h"
 #include "displayapp/screens/Metronome.h"
 #include "displayapp/screens/Music.h"
-#include "displayapp/screens/Navigation.h"
 #include "displayapp/screens/Notifications.h"
 #include "displayapp/screens/SystemInfo.h"
 #include "displayapp/screens/Tile.h"
@@ -486,9 +485,6 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
       break;
     case Apps::Music:
       currentScreen = std::make_unique<Screens::Music>(this, systemTask->nimble().music());
-      break;
-    case Apps::Navigation:
-      currentScreen = std::make_unique<Screens::Navigation>(this, systemTask->nimble().navigation());
       break;
     case Apps::HeartRate:
       currentScreen = std::make_unique<Screens::HeartRate>(this, heartRateController, *systemTask);
