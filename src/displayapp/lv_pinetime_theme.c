@@ -62,7 +62,7 @@ static void basic_init(void) {
   lv_style_set_border_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_WHITE);
   lv_style_set_border_width(&style_btn, LV_STATE_DEFAULT, 0);
 
-  lv_style_set_text_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+  lv_style_set_text_color(&style_btn, LV_STATE_DEFAULT, lv_color_hex(0x24ff00));
   lv_style_set_text_color(&style_btn, LV_STATE_DISABLED, LV_COLOR_GRAY);
 
   lv_style_set_value_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_WHITE);
