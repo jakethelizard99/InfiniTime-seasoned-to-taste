@@ -52,7 +52,7 @@ Music::Music(Pinetime::Applications::DisplayApp* app, Pinetime::Controllers::Mus
 
   lv_style_init(&btn_style);
   lv_style_set_radius(&btn_style, LV_STATE_DEFAULT, 20);
-  lv_style_set_bg_color(&btn_style, LV_STATE_DEFAULT, LV_COLOR_HEX(#00e24a));
+  lv_style_set_bg_color(&btn_style, LV_STATE_DEFAULT, LV_COLOR_HEX(0x00e24a));
   lv_style_set_bg_opa(&btn_style, LV_STATE_DEFAULT, LV_OPA_50);
 
   btnVolDown = lv_btn_create(lv_scr_act(), nullptr);
