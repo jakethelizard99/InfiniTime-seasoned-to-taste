@@ -44,10 +44,11 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
 
   label_time = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_font(label_time, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_extrabold_compressed);
-
+  lv_obj_set_style_local_text_color(label_time, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x09dc41));
   lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, 0, 0);
 
   label_time_ampm = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_color(label_time_ampm, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x09dc41));
   lv_label_set_text_static(label_time_ampm, "");
   lv_obj_align(label_time_ampm, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, -30, -55);
 
@@ -77,7 +78,6 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
 
 WatchFaceDigital::~WatchFaceDigital() {
   lv_task_del(taskRefresh);
-  lv_obj_set_style_local_text_color(WatchFaceDigital, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x09dc41));
   lv_obj_clean(lv_scr_act());
 }
 
