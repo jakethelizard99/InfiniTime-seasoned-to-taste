@@ -76,8 +76,8 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
 }
 
 WatchFaceDigital::~WatchFaceDigital() {
-  lv_obj_set_style_local_text_color(digitalFace, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x09dc41));
   lv_task_del(taskRefresh);
+  lv_obj_set_style_local_text_color(WatchFaceDigital, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x09dc41));
   lv_obj_clean(lv_scr_act());
 }
 
