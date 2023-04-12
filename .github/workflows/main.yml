@@ -12,7 +12,7 @@ on:
     paths-ignore:
       - 'doc/**'
       - '**.md'
-
+  workflow_dispatch:
 jobs:
   build-firmware:
     runs-on: ubuntu-22.04
