@@ -23,6 +23,7 @@ Clock::Clock(Controllers::DateTime& dateTimeController,
              Controllers::Settings& settingsController,
              Controllers::HeartRateController& heartRateController,
              Controllers::MotionController& motionController,
+             Controllers::WeatherService& weatherService,
              Controllers::FS& filesystem)
   : dateTimeController {dateTimeController},
     batteryController {batteryController},
@@ -31,6 +32,7 @@ Clock::Clock(Controllers::DateTime& dateTimeController,
     settingsController {settingsController},
     heartRateController {heartRateController},
     motionController {motionController},
+    weatherService {weatherService},
     filesystem {filesystem},
     screen {[this, &settingsController]() {
       switch (settingsController.GetClockFace()) {
@@ -94,7 +96,8 @@ std::unique_ptr<Screen> Clock::WatchFacePineTimeStyleScreen() {
                                                            bleController,
                                                            notificationManager,
                                                            settingsController,
-                                                           motionController);
+                                                           motionController,
+                                                           weatherService);
 }
 
 std::unique_ptr<Screen> Clock::WatchFaceTerminalScreen() {
