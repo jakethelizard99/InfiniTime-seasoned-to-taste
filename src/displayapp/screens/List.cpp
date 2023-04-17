@@ -54,7 +54,7 @@ List::List(uint8_t screenID,
       lv_obj_set_style_local_clip_corner(itemApps[i], LV_BTN_PART_MAIN, LV_STATE_DEFAULT, true);
 
       lv_obj_t* icon = lv_label_create(itemApps[i], nullptr);
-      lv_obj_set_style_local_text_color(labelBtIco, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_MAKE(0x0, 0xb0, 0x0));
+      lv_obj_set_style_local_text_color(icon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_MAKE(0x0, 0xb0, 0x0));
       lv_label_set_text_static(icon, applications[i].icon);
       lv_label_set_long_mode(icon, LV_LABEL_LONG_CROP);
       lv_label_set_align(icon, LV_LABEL_ALIGN_CENTER);
