@@ -6,7 +6,7 @@ using namespace Pinetime::Controllers;
 lv_color_t Pinetime::Applications::Convert(Pinetime::Controllers::Settings::Colors color) {
   switch (color) {
     case Pinetime::Controllers::Settings::Colors::White:
-      return LV_COLOR_WHITE;
+      return LV_COLOR_MAKE(0x0, 0xFF, 0x0);
     case Pinetime::Controllers::Settings::Colors::Silver:
       return LV_COLOR_SILVER;
     case Pinetime::Controllers::Settings::Colors::Gray:
