@@ -45,7 +45,6 @@ namespace Pinetime {
         Utility::DirtyValue<bool> bleState {};
         Utility::DirtyValue<bool> bleRadioEnabled {};
         Utility::DirtyValue<std::chrono::time_point<std::chrono::system_clock, std::chrono::minutes>> currentDateTime {};
-        Utility::DirtyValue<bool> motionSensorOk {};
         Utility::DirtyValue<uint32_t> stepCount {};
         Utility::DirtyValue<uint8_t> heartbeat {};
         Utility::DirtyValue<bool> heartbeatRunning {};
@@ -77,7 +76,7 @@ namespace Pinetime {
         lv_obj_t* backgroundLabel;
         lv_obj_t* bleIcon;
         lv_obj_t* batteryPlug;
-        lv_obj_t* label_battery_vallue;
+        lv_obj_t* label_battery_value;
         lv_obj_t* heartbeatIcon;
         lv_obj_t* heartbeatValue;
         lv_obj_t* stepIcon;
